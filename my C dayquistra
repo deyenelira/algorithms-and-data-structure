@@ -1,0 +1,28 @@
+int dayquistra(int grafo[][tam], int inicio, int fim){
+  int dist[tam], prev[tam], selecionado[tam]={}, m, min, comeco, d, j;
+  for(int i=1; i<tam2; i++){
+    dist[i] = inf;
+    prev[i] = inf;
+  }
+  comeco = inicio;
+  selecionado[comeco]=1;
+  dist[comeco]=0;
+  while(selecionado[fim]==0){
+    min = inf;
+    m = 0;
+    for(int i=1; i<tam2; i++){
+      d = dist[comeco]+grafo[comeco][i];
+      if(d<dist[i] && selecionado[i]==0){
+        dist[i] = d;
+        prev[i] = comeco;
+      }
+      if(min>dist[i] && selecionado[i]==0){
+        min = dist[i];
+        m = i;
+      }
+    }
+    comeco = m;
+    selecionado[comeco] = 1;
+  }
+  return dist[fim];
+}
